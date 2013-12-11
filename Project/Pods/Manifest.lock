@@ -1,0 +1,14 @@
+PODS:
+  - PBAutoCompleteTextField (0.1.0)
+
+DEPENDENCIES:
+  - PBAutoCompleteTextField (from `../`)
+
+EXTERNAL SOURCES:
+  PBAutoCompleteTextField:
+    :path: ../
+
+SPEC CHECKSUMS:
+  PBAutoCompleteTextField: a4a95b3b08dadcade33bb3db4324e6be6cad2025
+
+COCOAPODS: 0.28.0
