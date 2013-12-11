@@ -8,6 +8,8 @@
 
 #import "PBACTextField.h"
 
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+
 @interface PBACTextField() <UITextFieldDelegate>
 @property (nonatomic, strong) UILabel *autoCompleteLabel;
 @property (nonatomic, strong) NSString *autoCompletePart;
@@ -39,11 +41,19 @@
     NSString *futureText = [self.text stringByReplacingCharactersInRange:range withString:string];
     NSString *autocompletePart = [self stringToAutocompleteCurrentText:futureText];
     
-    CGSize futureSize = [futureText sizeWithAttributes:@{NSFontAttributeName:self.font}];
+    CGSize futureSize;
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        futureSize = [futureText sizeWithFont:self.font];
+        futureSize.width += 6.0f;
+    } else {
+        futureSize = [futureText sizeWithAttributes:@{NSFontAttributeName:self.font}];
+    }
+    
     
     [self.autoCompleteLabel removeFromSuperview];
     [self.autoCompleteLabel setText:autocompletePart];
-    [self.autoCompleteLabel setFrame:CGRectMake(futureSize.width, -3.0f, CGRectGetWidth(self.bounds) - futureSize.width, CGRectGetHeight(self.bounds))];
+    [self.autoCompleteLabel setFrame:CGRectMake(futureSize.width, SYSTEM_VERSION_LESS_THAN(@"7.0") ? 0.0f : - 3.0f, CGRectGetWidth(self.bounds) - futureSize.width, CGRectGetHeight(self.bounds))];
     
     [self.textInputView addSubview:self.autoCompleteLabel];
     
