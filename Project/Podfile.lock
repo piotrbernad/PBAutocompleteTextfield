@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PBAutoCompleteTextField: a4a95b3b08dadcade33bb3db4324e6be6cad2025
+  PBAutoCompleteTextField: df5ccb66b4ec48831ae18a7459735028c30aa81c
 
 COCOAPODS: 0.28.0

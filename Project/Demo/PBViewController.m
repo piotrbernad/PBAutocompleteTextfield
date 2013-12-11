@@ -7,8 +7,10 @@
 //
 
 #import "PBViewController.h"
+#import <PBACTextField.h>
 
 @interface PBViewController ()
+@property (strong, nonatomic) IBOutlet PBACTextField *storyboardTextField;
 
 @end
 
@@ -18,6 +20,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [_storyboardTextField setAutoCompleteValues:[[self exampleAutocompleteStrings] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+    [_storyboardTextField setAutoCompleteEnabled:YES];
+}
+
+- (NSArray *)exampleAutocompleteStrings {
+    return @[@"Poland",@"Germany", @"Turkey", @"Afganistan", @"Peru", @"Boliwia", @"Moldawia", @"Mongolia", @"France", @"Italy"];
 }
 
 - (void)didReceiveMemoryWarning
